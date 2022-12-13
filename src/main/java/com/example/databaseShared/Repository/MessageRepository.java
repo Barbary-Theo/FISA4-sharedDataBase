@@ -6,9 +6,4 @@ import org.springframework.data.mongodb.repository.Query;
 
 public interface MessageRepository extends MongoRepository<Message, String> {
 
-    @Query("{_id:'?0'}")
-    Message findEleById(String _id);
-
-    long count();
-
 }
