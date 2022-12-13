@@ -3,28 +3,27 @@ package com.example.databaseShared.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
 
-@Document("Messages")
+@Document("message")
 public class Message {
 
     @Id
-    private String _id;
+    private String id;
     private String text;
 
     public Message() { }
 
-    public Message(String _id, String text) {
-        this._id = _id;
+    public Message(String id, String text) {
+        this.id = id;
         this.text = text;
     }
 
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getText() {

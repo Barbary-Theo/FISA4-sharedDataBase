@@ -10,9 +10,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories
 public class DatabaseSharedApplication {
 
-	@Autowired
-	MessageRepository messageRepository;
-
 	public static void main(String[] args) {
 		SpringApplication.run(DatabaseSharedApplication.class, args);
 	}
