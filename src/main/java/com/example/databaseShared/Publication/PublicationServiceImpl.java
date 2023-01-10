@@ -1,6 +1,5 @@
 package com.example.databaseShared.Publication;
 
-import com.example.databaseShared.Message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ public class PublicationServiceImpl implements PublicationService {
     }
 
     @Override
-    public Publication findOne(String id) {
+    public List<Publication> findById(String id) {
         return publicationRepository.findById(id);
     }
 

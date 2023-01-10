@@ -31,14 +31,6 @@ public class User {
         this.contactId = contactId;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getPseudo() {
         return pseudo;
     }
@@ -93,5 +85,13 @@ public class User {
 
     public void setContactId(List<String> contactId) {
         this.contactId = contactId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
