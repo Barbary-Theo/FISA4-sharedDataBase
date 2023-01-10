@@ -7,16 +7,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Message {
 
     @Id
-    public String id;
-    public String userId;
-    public String comment;
+    private String id;
+    private String senderId;
+    private String recipientId;
+    private String comment;
 
 
     public Message() {}
 
-    public Message(String id, String userId, String comment) {
+    public Message(String id, String senderId, String recipientId, String comment) {
         this.id = id;
-        this.userId = userId;
+        this.senderId = senderId;
+        this.recipientId = recipientId;
         this.comment = comment;
     }
 
@@ -29,12 +31,20 @@ public class Message {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getSenderId() {
+        return senderId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
+
+    public String getRecipientId() {
+        return recipientId;
+    }
+
+    public void setRecipientId(String recipientId) {
+        this.recipientId = recipientId;
     }
 
     public String getComment() {

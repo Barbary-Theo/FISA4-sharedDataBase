@@ -1,6 +1,6 @@
-package com.example.databaseShared.Message;
+package com.example.databaseShared.Publication;
 
-import com.example.databaseShared.User.User;
+import com.example.databaseShared.Message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/messages")
-public class MessageController {
+@RequestMapping("/publications")
+public class PublicationController {
 
     @Autowired
-    MessageService messageService;
+    PublicationService publicationService;
 
     @GetMapping("/all")
-    public List<Message> getAllMessage() {
-        return messageService.findAll();
+    public List<Publication> getAllPublications() {
+        return publicationService.findAll();
     }
 
     @GetMapping("/one/{id}")
-    public Message getOneMessage(@PathVariable("id") String id) {
-        return messageService.findOne(id);
+    public Publication getOnePublication(@PathVariable("id") String id) {
+        return publicationService.findOne(id);
     }
 
 }
