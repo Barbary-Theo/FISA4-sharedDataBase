@@ -10,18 +10,16 @@ import java.util.List;
 public class User {
 
     @Id
-    public String id;
-    public String pseudo;
-    public Date bornDate;
-    public String description;
-    public String login;
-    public String password;
-    public String avatarPath;
-    public List<String> contactId;
-
-
+    private String id;
+    private String pseudo;
+    private Date bornDate;
+    private String description;
+    private String login;
+    private String password;
+    private String avatarPath;
+    private List<String> contactId;
+    
     public User() { }
-
     public User(String id, String pseudo, Date bornDate, String description, String login, String password, String avatarPath, List<String> contactId) {
         this.id = id;
         this.pseudo = pseudo;
@@ -31,15 +29,6 @@ public class User {
         this.password = password;
         this.avatarPath = avatarPath;
         this.contactId = contactId;
-    }
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getPseudo() {
@@ -96,5 +85,13 @@ public class User {
 
     public void setContactId(List<String> contactId) {
         this.contactId = contactId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

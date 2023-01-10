@@ -17,7 +17,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Message findOne(String id) {
+    public List<Message> findById(String id) {
         return messageRepository.findById(id);
     }
 
