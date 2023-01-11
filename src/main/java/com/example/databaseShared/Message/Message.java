@@ -14,16 +14,18 @@ public class Message {
     private String recipientLogin;
     private String comment;
     private Date date;
+    private String status;
 
 
     public Message() {}
 
-    public Message(String id, String senderLogin, String recipientLogin, String comment, Date date) {
+    public Message(String id, String senderLogin, String recipientLogin, String comment, Date date, String status) {
         this.id = id;
         this.senderLogin = senderLogin;
         this.recipientLogin = recipientLogin;
         this.comment = comment;
         this.date = date;
+        this.status = status;
     }
 
 
@@ -65,6 +67,14 @@ public class Message {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
 

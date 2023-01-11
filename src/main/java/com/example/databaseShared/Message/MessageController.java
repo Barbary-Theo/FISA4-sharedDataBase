@@ -46,6 +46,7 @@ public class MessageController {
             if(userSender == null || userRecipient == null) return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 
             message.setDate(new Date());
+            message.setStatus("unread");
             messageService.save(message);
             return ResponseEntity.ok(message);
         } catch (Exception e) {
@@ -58,6 +59,32 @@ public class MessageController {
     public @ResponseBody List<Message> addOneMessage(@PathVariable("loginOne") String loginOne,
                                                                @PathVariable("loginTwo") String loginTwo) {
         return messageService.findConversation(loginOne, loginTwo);
+    }
+
+    @GetMapping("/unread/{login}")
+    public @ResponseBody List<Message> getMessageNotReadByUserLogin(@PathVariable("login") String login) {
+        return messageService.findByRecipientLoginAndStatus(login, "unread");
+    }
+
+    @PatchMapping("/read/{loginReader}/{loginUserConversation}")
+    public ResponseEntity<String> readMessageInConversation(@PathVariable("loginReader") String loginReader,
+                                                            @PathVariable("loginUserConversation") String loginUserConversation) {
+
+        try {
+
+            List<Message> conversation = messageService.findMessageNotReadInConversation(loginReader, loginUserConversation);
+
+            for(Message messageNotRead : conversation) {
+                messageNotRead.setStatus("read");
+                messageService.save(messageNotRead);
+            }
+
+            return ResponseEntity.ok(conversation.size() + " messages have been read");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+
     }
 
 

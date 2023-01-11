@@ -33,8 +33,26 @@ public class MessageServiceImpl implements MessageService {
         User userTwo = userService.findByLogin(loginTwo);
 
         if(userOne == null || userTwo == null) return new ArrayList<>();
-        //In this case both user exist in db
-        return messageRepository.findConversation(loginOne, loginTwo);
+        //In this case both users exist in db
+        List<Message> messageUserOneToUserTwo = messageRepository.findBySenderLoginAndRecipientLogin(loginOne, loginTwo);
+        List<Message> messageUserTwoToUserOne = messageRepository.findBySenderLoginAndRecipientLogin(loginTwo, loginOne);
+        messageUserOneToUserTwo.addAll(messageUserTwoToUserOne);
+        return messageUserOneToUserTwo;
+    }
+
+    @Override
+    public List<Message> findMessageNotReadInConversation(String loginReader, String loginUserConversation) {
+        User userOne = userService.findByLogin(loginReader);
+        User userTwo = userService.findByLogin(loginUserConversation);
+
+        if(userOne == null || userTwo == null) return new ArrayList<>();
+        //In this case both users exist in db
+        return messageRepository.findBySenderLoginAndRecipientLoginAndStatus(loginUserConversation, loginReader, "unread");
+    }
+
+    @Override
+    public List<Message> findByRecipientLoginAndStatus(String login, String status) {
+        return messageRepository.findByRecipientLoginAndStatus(login, status);
     }
 
     @Override
