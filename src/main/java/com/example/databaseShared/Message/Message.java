@@ -3,23 +3,27 @@ package com.example.databaseShared.Message;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Document(collection = "messages")
 public class Message {
 
     @Id
     private String id;
-    private String senderId;
-    private String recipientId;
+    private String senderLogin;
+    private String recipientLogin;
     private String comment;
+    private Date date;
 
 
     public Message() {}
 
-    public Message(String id, String senderId, String recipientId, String comment) {
+    public Message(String id, String senderLogin, String recipientLogin, String comment, Date date) {
         this.id = id;
-        this.senderId = senderId;
-        this.recipientId = recipientId;
+        this.senderLogin = senderLogin;
+        this.recipientLogin = recipientLogin;
         this.comment = comment;
+        this.date = date;
     }
 
 
@@ -31,20 +35,20 @@ public class Message {
         this.id = id;
     }
 
-    public String getSenderId() {
-        return senderId;
+    public String getSenderLogin() {
+        return senderLogin;
     }
 
-    public void setSenderId(String senderId) {
-        this.senderId = senderId;
+    public void setSenderLogin(String senderLogin) {
+        this.senderLogin = senderLogin;
     }
 
-    public String getRecipientId() {
-        return recipientId;
+    public String getRecipientLogin() {
+        return recipientLogin;
     }
 
-    public void setRecipientId(String recipientId) {
-        this.recipientId = recipientId;
+    public void setRecipientLogin(String recipientLogin) {
+        this.recipientLogin = recipientLogin;
     }
 
     public String getComment() {
@@ -53,6 +57,14 @@ public class Message {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
 

@@ -32,6 +32,19 @@ public class UserController {
         catch (Exception e) { return new ArrayList<>(); }
     }
 
+    @PostMapping("/save")
+    public @ResponseBody ResponseEntity<User> getAllUsers(@RequestBody User user) {
+        LOGGER.info("save user : " + user.getId() + ", " + user.getLogin());
+        try {
+            if(user.getLogin() == null) return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT).body(null);
+            User userByLogin = userService.findByLogin(user.getLogin());
+            if(userByLogin != null) return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+            userService.save(user);
+            return ResponseEntity.ok(user);
+        }
+        catch (Exception e) { return ResponseEntity.status(HttpStatus.CONFLICT).body(null); }
+    }
+
     @GetMapping("/one/{id}")
     public User getOneUser(@PathVariable("id") String id) {
         LOGGER.info("Find user by id : " + id);

@@ -1,6 +1,7 @@
 package com.example.databaseShared.User;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -13,6 +14,7 @@ public class User {
     private String id;
     private Date bornDate;
     private String description;
+    @Indexed(unique = true)
     private String login;
     private String password;
     private String avatarPath;
