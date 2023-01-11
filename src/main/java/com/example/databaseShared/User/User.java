@@ -11,7 +11,6 @@ public class User {
 
     @Id
     private String id;
-    private String pseudo;
     private Date bornDate;
     private String description;
     private String login;
@@ -20,23 +19,14 @@ public class User {
     private List<String> contactId;
     
     public User() { }
-    public User(String id, String pseudo, Date bornDate, String description, String login, String password, String avatarPath, List<String> contactId) {
+    public User(String id, Date bornDate, String description, String login, String password, String avatarPath, List<String> contactId) {
         this.id = id;
-        this.pseudo = pseudo;
         this.bornDate = bornDate;
         this.description = description;
         this.login = login;
         this.password = password;
         this.avatarPath = avatarPath;
         this.contactId = contactId;
-    }
-
-    public String getPseudo() {
-        return pseudo;
-    }
-
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
     }
 
     public Date getBornDate() {
