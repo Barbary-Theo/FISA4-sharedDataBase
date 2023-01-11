@@ -1,13 +1,15 @@
 package com.example.databaseShared.Publication;
 
+import com.example.databaseShared.User.User;
+import com.example.databaseShared.User.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -18,6 +20,8 @@ public class PublicationController {
 
     @Autowired
     PublicationService publicationService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/all")
     public List<Publication> getAllPublications() {
@@ -30,6 +34,28 @@ public class PublicationController {
         LOGGER.info("Find publication by id : " + id);
         List<Publication> publications = publicationService.findById(id);
         return publications != null && !publications.isEmpty() ? publications.get(0) : null;
+    }
+
+    @PostMapping("/addPost")
+    public @ResponseBody ResponseEntity<String> addPost(@RequestBody Publication publication) {
+        LOGGER.info("Add publication by user : " + publication.getUserLogin() + ", that says : " + publication.getComment());
+
+        try {
+            User user = userService.findByLogin(publication.getUserLogin());
+            if(user == null) return ResponseEntity.status(HttpStatus.NO_CONTENT).body("User not found by his login");
+
+            publication.setPublicationDate(new Date());
+            publicationService.save(publication);
+
+            return ResponseEntity.ok("Publication saved");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/all/{login}")
+    public List<Publication> getAllPublicationLogin(@PathVariable("login") String login) {
+        return publicationService.findByUserLogin(login);
     }
 
 }

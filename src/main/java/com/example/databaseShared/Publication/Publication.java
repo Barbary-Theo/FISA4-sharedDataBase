@@ -10,7 +10,7 @@ public class Publication {
     
     @Id
     private String id;
-    private String userId;
+    private String userLogin;
     private String comment;
     private Date publicationDate;
     private String parentPublicationId;
@@ -18,9 +18,9 @@ public class Publication {
 
     public Publication() { }
 
-    public Publication(String id, String userId, String comment, Date publicationDate, String parentPublicationId) {
+    public Publication(String id, String userLogin, String comment, Date publicationDate, String parentPublicationId) {
         this.id = id;
-        this.userId = userId;
+        this.userLogin = userLogin;
         this.comment = comment;
         this.publicationDate = publicationDate;
         this.parentPublicationId = parentPublicationId;
@@ -35,12 +35,12 @@ public class Publication {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUserLogin() {
+        return userLogin;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 
     public String getComment() {

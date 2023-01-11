@@ -6,6 +6,7 @@ public interface PublicationService {
 
     public List<Publication> findAll();
     public List<Publication> findById(String id);
+    public List<Publication> findByUserLogin(String userLogin);
     public void save(Publication publication);
     public void delete(Publication publication);
 

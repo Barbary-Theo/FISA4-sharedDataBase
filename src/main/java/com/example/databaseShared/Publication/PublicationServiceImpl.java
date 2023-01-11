@@ -22,6 +22,11 @@ public class PublicationServiceImpl implements PublicationService {
     }
 
     @Override
+    public List<Publication> findByUserLogin(String userLogin) {
+        return publicationRepository.findByUserLogin(userLogin);
+    }
+
+    @Override
     public void save(Publication publication) {
         publicationRepository.save(publication);
     }
