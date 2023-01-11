@@ -3,8 +3,9 @@ package com.example.databaseShared.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -53,6 +54,58 @@ public class UserController {
     public List<User> getUserFriendsByLogin(@PathVariable("login") String login) {
         LOGGER.info("Find user friends by login : " + login);
         return userService.findUserFriendsByLogin(login);
+    }
+
+    @PatchMapping("/add/{loginUser}/{loginContact}")
+    public ResponseEntity<String> addFriendToUserByLogin(@PathVariable("loginUser") String loginUser,
+                                                      @PathVariable("loginContact") String loginContact) {
+        LOGGER.info("Add friend " + loginContact + " to " + loginUser);
+        try {
+            User userOne = userService.findByLogin(loginUser);
+            User userTwo = userService.findByLogin(loginContact);
+
+            if(userOne == null || userTwo == null) return ResponseEntity.status(HttpStatus.NO_CONTENT).body("One of both user is not found, check logins inputted");
+
+            if(userOne.getContactId() == null) userOne.setContactId(new ArrayList<>());
+            if(userTwo.getContactId() == null) userTwo.setContactId(new ArrayList<>());
+
+            if(!userOne.getContactId().contains(userTwo.getId())) userOne.getContactId().add(userTwo.getId());
+            if(!userTwo.getContactId().contains(userOne.getId())) userTwo.getContactId().add(userOne.getId());
+
+            userService.save(userOne);
+            userService.save(userTwo);
+
+            return ResponseEntity.ok("User " + loginUser + " and " + loginContact + " are now friend");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @PatchMapping("/remove/{loginUser}/{loginContact}")
+    public ResponseEntity<String> removeFriendToUserByLogin(@PathVariable("loginUser") String loginUser,
+                                                      @PathVariable("loginContact") String loginContact) {
+        LOGGER.info("Remove friend " + loginContact + " to " + loginUser);
+        try {
+            User userOne = userService.findByLogin(loginUser);
+            User userTwo = userService.findByLogin(loginContact);
+
+            if(userOne == null || userTwo == null) return ResponseEntity.status(HttpStatus.NO_CONTENT).body("One of both user is not found, check logins inputted");
+
+            if(userOne.getContactId() == null) userOne.setContactId(new ArrayList<>());
+            if(userTwo.getContactId() == null) userTwo.setContactId(new ArrayList<>());
+
+            userOne.getContactId().remove(userTwo.getId());
+            userTwo.getContactId().remove(userOne.getId());
+
+            userService.save(userOne);
+            userService.save(userTwo);
+
+            return ResponseEntity.ok("User " + loginUser + " and " + loginContact + " are not friend anymore");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
 }
