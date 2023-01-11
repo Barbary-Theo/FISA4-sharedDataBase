@@ -21,6 +21,7 @@ public class User {
     private List<String> contactId;
     
     public User() { }
+
     public User(String id, Date bornDate, String description, String login, String password, String avatarPath, List<String> contactId) {
         this.id = id;
         this.bornDate = bornDate;

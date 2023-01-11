@@ -34,7 +34,7 @@ public class UserController {
 
     @PostMapping("/save")
     public @ResponseBody ResponseEntity<User> getAllUsers(@RequestBody User user) {
-        LOGGER.info("save user : " + user.getId() + ", " + user.getLogin());
+        LOGGER.info("save user : " + user.getLogin());
         try {
             if(user.getLogin() == null) return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT).body(null);
             User userByLogin = userService.findByLogin(user.getLogin());
@@ -43,12 +43,6 @@ public class UserController {
             return ResponseEntity.ok(user);
         }
         catch (Exception e) { return ResponseEntity.status(HttpStatus.CONFLICT).body(null); }
-    }
-
-    @GetMapping("/one/{id}")
-    public User getOneUser(@PathVariable("id") String id) {
-        LOGGER.info("Find user by id : " + id);
-        return userService.findById(id);
     }
 
     @GetMapping("/login/{login}")
@@ -82,8 +76,8 @@ public class UserController {
             if(userOne.getContactId() == null) userOne.setContactId(new ArrayList<>());
             if(userTwo.getContactId() == null) userTwo.setContactId(new ArrayList<>());
 
-            if(!userOne.getContactId().contains(userTwo.getId())) userOne.getContactId().add(userTwo.getId());
-            if(!userTwo.getContactId().contains(userOne.getId())) userTwo.getContactId().add(userOne.getId());
+            if(!userOne.getContactId().contains(userTwo.getLogin())) userOne.getContactId().add(userTwo.getLogin());
+            if(!userTwo.getContactId().contains(userOne.getLogin())) userTwo.getContactId().add(userOne.getLogin());
 
             userService.save(userOne);
             userService.save(userTwo);
@@ -108,8 +102,8 @@ public class UserController {
             if(userOne.getContactId() == null) userOne.setContactId(new ArrayList<>());
             if(userTwo.getContactId() == null) userTwo.setContactId(new ArrayList<>());
 
-            userOne.getContactId().remove(userTwo.getId());
-            userTwo.getContactId().remove(userOne.getId());
+            userOne.getContactId().remove(userTwo.getLogin());
+            userTwo.getContactId().remove(userOne.getLogin());
 
             userService.save(userOne);
             userService.save(userTwo);

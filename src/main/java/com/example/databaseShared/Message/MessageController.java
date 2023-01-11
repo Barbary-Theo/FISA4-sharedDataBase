@@ -36,7 +36,7 @@ public class MessageController {
         return messages != null && !messages.isEmpty() ? messages.get(0) : null;
     }
 
-    @PostMapping("/addMessage/{loginSender}/{loginRecipient}")
+    @PostMapping("/addMessage")
     public @ResponseBody ResponseEntity<Message> addOneMessage(@RequestBody Message message) {
 
         try {
@@ -52,6 +52,12 @@ public class MessageController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
 
+    }
+
+    @GetMapping("/conversation/{loginOne}/{loginTwo}")
+    public @ResponseBody List<Message> addOneMessage(@PathVariable("loginOne") String loginOne,
+                                                               @PathVariable("loginTwo") String loginTwo) {
+        return messageService.findConversation(loginOne, loginTwo);
     }
 
 

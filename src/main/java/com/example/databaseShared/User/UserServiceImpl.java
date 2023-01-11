@@ -1,7 +1,6 @@
 package com.example.databaseShared.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +24,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(String id) {
-        List<User> users = userRepository.findById(id);
-        return users != null && !users.isEmpty() ? users.get(0) : null;
-    }
-
-    @Override
     public User findByLogin(String login) {
         List<User> users = userRepository.findByLogin(login);
         return users != null && !users.isEmpty() ? users.get(0) : null;
@@ -49,8 +42,8 @@ public class UserServiceImpl implements UserService {
         if(user == null || user.getContactId() == null || user.getContactId().isEmpty()) return new ArrayList<>();
 
         List<User> friends = new ArrayList<>();
-        for(String id : user.getContactId()) {
-            User friend = this.findById(id);
+        for(String contactLogin : user.getContactId()) {
+            User friend = this.findByLogin(contactLogin);
             if(friend != null) friends.add(friend);
         }
         return friends;
