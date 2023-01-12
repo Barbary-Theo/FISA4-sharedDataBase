@@ -1,5 +1,7 @@
 package com.example.databaseShared.Message;
 
+import com.example.databaseShared.Log.Log;
+import com.example.databaseShared.Log.LogService;
 import com.example.databaseShared.User.User;
 import com.example.databaseShared.User.UserService;
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +25,8 @@ public class MessageController {
     MessageService messageService;
     @Autowired
     UserService userService;
+    @Autowired
+    LogService logService;
 
     @GetMapping("/all")
     public List<Message> getAllMessage() {
@@ -38,7 +43,7 @@ public class MessageController {
 
     @PostMapping("/addMessage")
     public @ResponseBody ResponseEntity<Message> addOneMessage(@RequestBody Message message) {
-
+        LOGGER.info("Add message from " + message.getSenderLogin() + " to " + message.getRecipientLogin() + ", that says : " + message.getComment());
         try {
             User userSender = userService.findByLogin(message.getSenderLogin());
             User userRecipient = userService.findByLogin(message.getRecipientLogin());
@@ -48,6 +53,18 @@ public class MessageController {
             message.setDate(new Date());
             message.setStatus("unread");
             messageService.save(message);
+
+            List<String> usersImplicated = new ArrayList<>();
+            usersImplicated.add(message.getSenderLogin());
+            usersImplicated.add(message.getRecipientLogin());
+            logService.save(
+                new Log(
+                    usersImplicated,
+                    "new message send by " + message.getSenderLogin() + " to " + message.getRecipientLogin() + " that contains text " + message.getComment(),
+                    new Date()
+                    )
+            );
+
             return ResponseEntity.ok(message);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
@@ -56,20 +73,22 @@ public class MessageController {
     }
 
     @GetMapping("/conversation/{loginOne}/{loginTwo}")
-    public @ResponseBody List<Message> addOneMessage(@PathVariable("loginOne") String loginOne,
+    public @ResponseBody List<Message> getConversation(@PathVariable("loginOne") String loginOne,
                                                                @PathVariable("loginTwo") String loginTwo) {
+        LOGGER.info("Find conversation between " + loginOne + " and " + loginTwo);
         return messageService.findConversation(loginOne, loginTwo);
     }
 
     @GetMapping("/unread/{login}")
     public @ResponseBody List<Message> getMessageNotReadByUserLogin(@PathVariable("login") String login) {
+        LOGGER.info("Find all message unread for user " + login);
         return messageService.findByRecipientLoginAndStatus(login, "unread");
     }
 
     @PatchMapping("/read/{loginReader}/{loginUserConversation}")
     public ResponseEntity<String> readMessageInConversation(@PathVariable("loginReader") String loginReader,
                                                             @PathVariable("loginUserConversation") String loginUserConversation) {
-
+        LOGGER.info(loginReader + " read message of " + loginUserConversation);
         try {
 
             List<Message> conversation = messageService.findMessageNotReadInConversation(loginReader, loginUserConversation);
@@ -77,6 +96,18 @@ public class MessageController {
             for(Message messageNotRead : conversation) {
                 messageNotRead.setStatus("read");
                 messageService.save(messageNotRead);
+            }
+
+            if(!conversation.isEmpty()) {
+                List<String> userImplicated = new ArrayList<>();
+                userImplicated.add(loginReader);
+                userImplicated.add(loginUserConversation);
+                logService.save(
+                        new Log(userImplicated,
+                                loginReader + " has read " + conversation.size() + " of " + loginUserConversation,
+                                new Date()
+                        )
+                );
             }
 
             return ResponseEntity.ok(conversation.size() + " messages have been read");

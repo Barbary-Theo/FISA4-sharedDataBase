@@ -8,5 +8,6 @@ public interface PublicationRepository extends MongoRepository<Publication, Long
     
     public List<Publication> findById(String id);
     public List<Publication> findByUserLogin(String login);
+    public List<Publication> findByUserLoginInOrderByPublicationDateDesc(List<String> logins);
 
 }

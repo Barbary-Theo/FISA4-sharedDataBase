@@ -1,5 +1,7 @@
 package com.example.databaseShared.User;
 
+import com.example.databaseShared.Log.Log;
+import com.example.databaseShared.Log.LogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -18,6 +21,8 @@ public class UserController {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     @Autowired
     UserService userService;
+    @Autowired
+    LogService logService;
 
     @GetMapping("/all")
     public List<User> getAllUsers() {
@@ -40,6 +45,17 @@ public class UserController {
             User userByLogin = userService.findByLogin(user.getLogin());
             if(userByLogin != null) return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
             userService.save(user);
+
+            List<String> userImplicated = new ArrayList<>();
+            userImplicated.add(user.getLogin());
+
+            logService.save(
+                    new Log(
+                        userImplicated,
+                        "user " + user.getLogin() + " has been created",
+                        new Date()
+                    )
+            );
             return ResponseEntity.ok(user);
         }
         catch (Exception e) { return ResponseEntity.status(HttpStatus.CONFLICT).body(null); }
@@ -82,6 +98,17 @@ public class UserController {
             userService.save(userOne);
             userService.save(userTwo);
 
+            List<String> userImplicated = new ArrayList<>();
+            userImplicated.add(userOne.getLogin());
+            userImplicated.add(userTwo.getLogin());
+            logService.save(
+                    new Log(
+                        userImplicated,
+                        userOne.getLogin() + " and " + userTwo.getLogin() + " are now friend",
+                        new Date()
+                    )
+            );
+
             return ResponseEntity.ok("User " + loginUser + " and " + loginContact + " are now friend");
 
         } catch (Exception e) {
@@ -102,11 +129,24 @@ public class UserController {
             if(userOne.getContactId() == null) userOne.setContactId(new ArrayList<>());
             if(userTwo.getContactId() == null) userTwo.setContactId(new ArrayList<>());
 
+            if(!userOne.getContactId().contains(userTwo.getLogin())) return ResponseEntity.status(HttpStatus.NO_CONTENT).body(loginUser + " and " + loginContact + " are not friend");
+
             userOne.getContactId().remove(userTwo.getLogin());
             userTwo.getContactId().remove(userOne.getLogin());
 
             userService.save(userOne);
             userService.save(userTwo);
+
+            List<String> userImplicated = new ArrayList<>();
+            userImplicated.add(userOne.getLogin());
+            userImplicated.add(userTwo.getLogin());
+            logService.save(
+                    new Log(
+                            userImplicated,
+                            userOne.getLogin() + " and " + userTwo.getLogin() + " are not friend anymore",
+                            new Date()
+                    )
+            );
 
             return ResponseEntity.ok("User " + loginUser + " and " + loginContact + " are not friend anymore");
 

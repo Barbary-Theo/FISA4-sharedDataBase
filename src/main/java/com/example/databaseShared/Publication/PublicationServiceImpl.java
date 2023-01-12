@@ -27,6 +27,11 @@ public class PublicationServiceImpl implements PublicationService {
     }
 
     @Override
+    public List<Publication> findByUserLoginInOrderByPublicationDateDesc(List<String> logins) {
+        return publicationRepository.findByUserLoginInOrderByPublicationDateDesc(logins);
+    }
+
+    @Override
     public void save(Publication publication) {
         publicationRepository.save(publication);
     }

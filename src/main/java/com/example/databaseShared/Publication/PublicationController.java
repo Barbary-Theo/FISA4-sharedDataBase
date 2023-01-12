@@ -1,5 +1,7 @@
 package com.example.databaseShared.Publication;
 
+import com.example.databaseShared.Log.Log;
+import com.example.databaseShared.Log.LogService;
 import com.example.databaseShared.User.User;
 import com.example.databaseShared.User.UserService;
 import org.slf4j.Logger;
@@ -9,8 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/publications")
@@ -22,6 +26,10 @@ public class PublicationController {
     PublicationService publicationService;
     @Autowired
     UserService userService;
+    @Autowired
+    LogService logService;
+    @Autowired
+    private PublicationRepository publicationRepository;
 
     @GetMapping("/all")
     public List<Publication> getAllPublications() {
@@ -47,6 +55,16 @@ public class PublicationController {
             publication.setPublicationDate(new Date());
             publicationService.save(publication);
 
+            List<String> userImplicated = new ArrayList<>();
+            userImplicated.add(publication.getUserLogin());
+            logService.save(
+                    new Log(
+                            userImplicated,
+                            publication.getUserLogin() + " add publication that contains " + publication.getComment(),
+                            new Date()
+                    )
+            );
+
             return ResponseEntity.ok("Publication saved");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -55,7 +73,21 @@ public class PublicationController {
 
     @GetMapping("/all/{login}")
     public List<Publication> getAllPublicationLogin(@PathVariable("login") String login) {
+        LOGGER.info("Find all publication for user " + login);
         return publicationService.findByUserLogin(login);
+    }
+
+    @GetMapping("/actu/{login}")
+    public List<Publication> getActuByLogin(@PathVariable("login") String login) {
+        LOGGER.info("Find actu for user " + login);
+        List<User> friends = userService.findUserFriendsByLogin(login);
+
+        if(friends != null) {
+            List<String> friendsLogin = friends.stream().map(User::getLogin).collect(Collectors.toList());
+            return publicationService.findByUserLoginInOrderByPublicationDateDesc(friendsLogin);
+        }
+
+        return new ArrayList<>();
     }
 
 }
