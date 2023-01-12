@@ -1,5 +1,4 @@
-# <center> 🗄️</center>
-## <center> Social Network project </center>
+# 🗄 ️Social Network project 
 
 **Teacher :** Maxime D’Halluin
    
