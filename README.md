@@ -1,4 +1,4 @@
-# 🗄 ️Social Network project 
+# 🗄️Social Network project 
 
 **Teacher :** Maxime D’Halluin
    
