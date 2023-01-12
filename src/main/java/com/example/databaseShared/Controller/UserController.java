@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/users")
@@ -155,6 +156,39 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
+    }
+
+
+    @PatchMapping("/perso/randomFriend")
+    public ResponseEntity<String> addRandomFriendToUsers() {
+
+        try {
+            Random random = new Random();
+            List<User> users = userService.findAll();
+            
+            for(User user : users) {
+                
+                int nbFriends = random.nextInt(17) + 3;
+                user.setContactId(new ArrayList<>());
+
+                for(int i = 0 ; i < nbFriends ; i++) {
+                    User futurFriend = users.get(random.nextInt(users.size() - 1));
+                    if(futurFriend.getContactId() == null) futurFriend.setContactId(new ArrayList<>());
+                    while (futurFriend.getLogin().equals(user.getLogin())) {
+                        futurFriend = users.get(random.nextInt(users.size() - 1));
+                    }
+                    user.getContactId().add(futurFriend.getLogin());
+                }
+
+                userService.save(user);
+            }
+
+
+            return ResponseEntity.ok("User have now friends");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+
     }
 
 }
