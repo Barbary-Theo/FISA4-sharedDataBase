@@ -49,12 +49,12 @@ public class MessageServiceImpl implements MessageService {
 
         if(userOne == null || userTwo == null) return new ArrayList<>();
         //In this case both users exist in db
-        return messageRepository.findBySenderLoginAndRecipientLoginAndStatus(loginUserConversation, loginReader, "unread");
+        return messageRepository.findBySenderLoginAndRecipientLoginAndRead(loginUserConversation, loginReader, false);
     }
 
     @Override
-    public List<Message> findByRecipientLoginAndStatus(String login, String status) {
-        return messageRepository.findByRecipientLoginAndStatus(login, status);
+    public List<Message> findByRecipientLoginAndRead(String login, Boolean isRead) {
+        return messageRepository.findByRecipientLoginAndRead(login, isRead);
     }
 
     @Override

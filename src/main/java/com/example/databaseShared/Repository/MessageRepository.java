@@ -9,7 +9,7 @@ public interface MessageRepository extends MongoRepository<Message, Long> {
 
     public List<Message> findById(String id);
     public List<Message> findBySenderLoginAndRecipientLogin(String loginOne, String loginTwo);
-    public List<Message> findBySenderLoginAndRecipientLoginAndStatus(String loginReader, String loginUserConversation, String status);
-    public List<Message> findByRecipientLoginAndStatus(String login, String status);
+    public List<Message> findBySenderLoginAndRecipientLoginAndRead(String loginReader, String loginUserConversation, Boolean status);
+    public List<Message> findByRecipientLoginAndRead(String login, Boolean status);
 
 }

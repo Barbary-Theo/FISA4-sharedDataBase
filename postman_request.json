@@ -18,12 +18,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/users/all",
+									"raw": "http://34.155.229.101:80/users/all",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"34",
+										"155",
+										"229",
+										"101"
 									],
-									"port": "8080",
+									"port": "80",
 									"path": [
 										"users",
 										"all"
@@ -38,12 +41,15 @@
 								"method": "PATCH",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/users/perso/randomFriend",
+									"raw": "http://34.155.229.101:80/users/perso/randomFriend",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"34",
+										"155",
+										"229",
+										"101"
 									],
-									"port": "8080",
+									"port": "80",
 									"path": [
 										"users",
 										"perso",
@@ -61,12 +67,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users/all/0",
+							"raw": "http://34.155.229.101:80/users/all/0",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"users",
 								"all",
@@ -82,12 +91,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users/login/weingerfield0",
+							"raw": "http://34.155.229.101:80/users/login/weingerfield0",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"users",
 								"login",
@@ -103,12 +115,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users/friends/weingerfield0",
+							"raw": "http://34.155.229.101:80/users/friends/weingerfield0",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"users",
 								"friends",
@@ -124,12 +139,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users/description/lorem ipsum dolor",
+							"raw": "http://34.155.229.101:80/users/description/lorem ipsum dolor",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"users",
 								"description",
@@ -145,12 +163,15 @@
 						"method": "PATCH",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users/add/phemphill1/ipullar2",
+							"raw": "http://34.155.229.101:80/users/add/phemphill1/ipullar2",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"users",
 								"add",
@@ -167,12 +188,15 @@
 						"method": "PATCH",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users/remove/weingerfield0/phemphill1",
+							"raw": "http://34.155.229.101:80/users/remove/weingerfield0/phemphill1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"users",
 								"remove",
@@ -198,12 +222,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/users/save",
+							"raw": "http://34.155.229.101:80/users/save",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"users",
 								"save"
@@ -226,17 +253,20 @@
 								"method": "PATCH",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/messages/read/weingerfield0/ewegener73",
+									"raw": "http://34.155.229.101:80/messages/read/aomullaney83/weingerfield0",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"34",
+										"155",
+										"229",
+										"101"
 									],
-									"port": "8080",
+									"port": "80",
 									"path": [
 										"messages",
 										"read",
-										"weingerfield0",
-										"ewegener73"
+										"aomullaney83",
+										"weingerfield0"
 									]
 								}
 							},
@@ -250,12 +280,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/messages/all",
+							"raw": "http://34.155.229.101:80/messages/all",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"messages",
 								"all"
@@ -270,17 +303,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/messages/conversation/weingerfield0/ewegener73",
+							"raw": "http://34.155.229.101:80/messages/conversation/weingerfield0/aomullaney83",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"messages",
 								"conversation",
 								"weingerfield0",
-								"ewegener73"
+								"aomullaney83"
 							]
 						}
 					},
@@ -292,16 +328,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/messages/unread/ewegener73",
+							"raw": "http://34.155.229.101:80/messages/unread/aomullaney83",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"messages",
 								"unread",
-								"ewegener73"
+								"aomullaney83"
 							]
 						}
 					},
@@ -314,7 +353,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"senderLogin\": \"weingerfield0\",\n    \"recipientLogin\": \"ewegener73\",\n    \"comment\": \"Salut\"\n}",
+							"raw": "{\n    \"senderLogin\": \"weingerfield0\",\n    \"recipientLogin\": \"aomullaney83\",\n    \"comment\": \"EHOOOOO !!\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -322,12 +361,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/messages/addMessage",
+							"raw": "http://34.155.229.101:80/messages/addMessage",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"messages",
 								"addMessage"
@@ -350,12 +392,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/publications/all",
+									"raw": "http://34.155.229.101:80/publications/all",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"34",
+										"155",
+										"229",
+										"101"
 									],
-									"port": "8080",
+									"port": "80",
 									"path": [
 										"publications",
 										"all"
@@ -370,12 +415,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/publications/one/000001",
+									"raw": "http://34.155.229.101:80/publications/one/000001",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"34",
+										"155",
+										"229",
+										"101"
 									],
-									"port": "8080",
+									"port": "80",
 									"path": [
 										"publications",
 										"one",
@@ -393,12 +441,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/publications/all/weingerfield0",
+							"raw": "http://34.155.229.101:80/publications/all/weingerfield0",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"publications",
 								"all",
@@ -414,12 +465,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/publications/actu/weingerfield0",
+							"raw": "http://34.155.229.101:80/publications/actu/weingerfield0",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"publications",
 								"actu",
@@ -444,12 +498,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/publications/addPost",
+							"raw": "http://34.155.229.101:80/publications/addPost",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"publications",
 								"addPost"
@@ -472,12 +529,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/logs/all",
+									"raw": "http://34.155.229.101:80/logs/all",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"34",
+										"155",
+										"229",
+										"101"
 									],
-									"port": "8080",
+									"port": "80",
 									"path": [
 										"logs",
 										"all"
@@ -501,12 +561,15 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/logs/save",
+									"raw": "http://34.155.229.101:80/logs/save",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"34",
+										"155",
+										"229",
+										"101"
 									],
-									"port": "8080",
+									"port": "80",
 									"path": [
 										"logs",
 										"save"
@@ -523,12 +586,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/logs/all/weingerfield0",
+							"raw": "http://34.155.229.101:80/logs/all/weingerfield0",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"34",
+								"155",
+								"229",
+								"101"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"logs",
 								"all",
@@ -546,12 +612,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/actuator/health",
+					"raw": "http://34.155.229.101:80/actuator/health",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"34",
+						"155",
+						"229",
+						"101"
 					],
-					"port": "8080",
+					"port": "80",
 					"path": [
 						"actuator",
 						"health"
