@@ -165,11 +165,16 @@ public class UserController {
         try {
             Random random = new Random();
             List<User> users = userService.findAll();
-            
+
+            for(User user : users) {
+                user.setContactId(new ArrayList<>());
+                userService.save(user);
+            }
+
             for(User user : users) {
                 
-                int nbFriends = random.nextInt(17) + 3;
-                user.setContactId(new ArrayList<>());
+                int nbFriends = random.nextInt(17) + 3 - user.getContactId().size();
+                nbFriends = nbFriends < 0 ? 0 : nbFriends;
 
                 for(int i = 0 ; i < nbFriends ; i++) {
                     User futurFriend = users.get(random.nextInt(users.size() - 1));
@@ -177,7 +182,9 @@ public class UserController {
                     while (futurFriend.getLogin().equals(user.getLogin())) {
                         futurFriend = users.get(random.nextInt(users.size() - 1));
                     }
+                    futurFriend.getContactId().add(user.getLogin());
                     user.getContactId().add(futurFriend.getLogin());
+                    userService.save(futurFriend);
                 }
 
                 userService.save(user);

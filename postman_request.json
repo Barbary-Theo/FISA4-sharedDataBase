@@ -226,7 +226,7 @@
 								"method": "PATCH",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/messages/read/phemphill1/weingerfield0",
+									"raw": "http://localhost:8080/messages/read/weingerfield0/ewegener73",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -235,8 +235,8 @@
 									"path": [
 										"messages",
 										"read",
-										"phemphill1",
-										"weingerfield0"
+										"weingerfield0",
+										"ewegener73"
 									]
 								}
 							},
@@ -270,7 +270,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/messages/conversation/weingerfield0/phemphill1",
+							"raw": "http://localhost:8080/messages/conversation/weingerfield0/ewegener73",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -280,7 +280,7 @@
 								"messages",
 								"conversation",
 								"weingerfield0",
-								"phemphill1"
+								"ewegener73"
 							]
 						}
 					},
@@ -292,7 +292,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/messages/unread/rlayed",
+							"raw": "http://localhost:8080/messages/unread/ewegener73",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -301,7 +301,7 @@
 							"path": [
 								"messages",
 								"unread",
-								"rlayed"
+								"ewegener73"
 							]
 						}
 					},
@@ -314,7 +314,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"senderLogin\": \"weingerfield0\",\n    \"recipientLogin\": \"phemphill1\",\n    \"comment\": \"Comment tu vas aujourd'hui ? \"\n}",
+							"raw": "{\n    \"senderLogin\": \"weingerfield0\",\n    \"recipientLogin\": \"ewegener73\",\n    \"comment\": \"Salut\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -414,7 +414,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/publications/actu/phemphill1",
+							"raw": "http://localhost:8080/publications/actu/weingerfield0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -423,7 +423,7 @@
 							"path": [
 								"publications",
 								"actu",
-								"phemphill1"
+								"weingerfield0"
 							]
 						}
 					},
@@ -436,7 +436,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userLogin\": \"ipullar2\",\n    \"comment\": \"Enfin diplomé et vous ! 🎁\",\n    \"parentPublicationId\": null\n}",
+							"raw": "{\n    \"userLogin\": \"aomullaney83\",\n    \"comment\": \"Bonjour tous le monde ! Je suis ami avec weingerfield0\",\n    \"parentPublicationId\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
