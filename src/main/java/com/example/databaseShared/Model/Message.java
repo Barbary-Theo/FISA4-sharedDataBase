@@ -14,18 +14,18 @@ public class Message {
     private String recipientLogin;
     private String comment;
     private Date date;
-    private String status;
+    private Boolean read;
 
 
     public Message() {}
 
-    public Message(String id, String senderLogin, String recipientLogin, String comment, Date date, String status) {
+    public Message(String id, String senderLogin, String recipientLogin, String comment, Date date, Boolean read) {
         this.id = id;
         this.senderLogin = senderLogin;
         this.recipientLogin = recipientLogin;
         this.comment = comment;
         this.date = date;
-        this.status = status;
+        this.read = read;
     }
 
 
@@ -69,12 +69,12 @@ public class Message {
         this.date = date;
     }
 
-    public String getStatus() {
-        return status;
+    public Boolean getRead() {
+        return read;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setRead(Boolean read) {
+        this.read = read;
     }
 }
 

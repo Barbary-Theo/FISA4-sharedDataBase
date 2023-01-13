@@ -53,7 +53,7 @@ public class MessageController {
             if(userSender == null || userRecipient == null) return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 
             message.setDate(new Date());
-            message.setStatus("unread");
+            message.setRead(false);
             messageService.save(message);
 
             List<String> usersImplicated = new ArrayList<>();
@@ -84,7 +84,7 @@ public class MessageController {
     @GetMapping("/unread/{login}")
     public @ResponseBody List<Message> getMessageNotReadByUserLogin(@PathVariable("login") String login) {
         LOGGER.info("Find all message unread for user " + login);
-        return messageService.findByRecipientLoginAndStatus(login, "unread");
+        return messageService.findByRecipientLoginAndRead(login, false);
     }
 
     @PatchMapping("/read/{loginReader}/{loginUserConversation}")
@@ -96,7 +96,7 @@ public class MessageController {
             List<Message> conversation = messageService.findMessageNotReadInConversation(loginReader, loginUserConversation);
 
             for(Message messageNotRead : conversation) {
-                messageNotRead.setStatus("read");
+                messageNotRead.setRead(true);
                 messageService.save(messageNotRead);
             }
 
